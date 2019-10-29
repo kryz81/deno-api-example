@@ -2,10 +2,12 @@ import { DB_PATH } from "../config.ts";
 import { User } from "../models/user.ts";
 
 export const fetchData = async (): Promise<User[]> => {
-  const content = await Deno.readFile(DB_PATH);
-  const decoder = new TextDecoder();
+  const data = await Deno.readFile(DB_PATH);
 
-  return JSON.parse(decoder.decode(content));
+  const decoder = new TextDecoder();
+  const decodedData = decoder.decode(data);
+
+  return JSON.parse(decodedData);
 };
 
 export const persistData = async (data): Promise<void> => {

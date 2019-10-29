@@ -16,5 +16,5 @@ export default async ({ params, response }) => {
     return;
   }
 
-  response.body = await getUser(userId);
+  response.body = foundUser;
 };
