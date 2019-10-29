@@ -24,7 +24,7 @@ export const createUser = async (userData: UserData): Promise<string> => {
     id: createId(),
     name: String(userData.name),
     role: String(userData.role),
-    jiraAdmin: "jiraAdmin" in userData ? userData.jiraAdmin || false,
+    jiraAdmin: "jiraAdmin" in userData ? userData.jiraAdmin : false,
     added: new Date()
   };
 

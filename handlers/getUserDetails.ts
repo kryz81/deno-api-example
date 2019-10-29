@@ -9,17 +9,12 @@ export default async ({ params, response }) => {
     return;
   }
 
-  try {
-    const foundUser = await getUser(userId);
-    if (!foundUser) {
-      response.status = 404;
-      response.body = { msg: `User with ID ${userId} not found` };
-      return;
-    }
-
-    response.body = await getUser(userId);
-  } catch (err) {
-    response.status = 500;
-    response.body = { msg: err.message };
+  const foundUser = await getUser(userId);
+  if (!foundUser) {
+    response.status = 404;
+    response.body = { msg: `User with ID ${userId} not found` };
+    return;
   }
+
+  response.body = await getUser(userId);
 };

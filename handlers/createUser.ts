@@ -17,11 +17,7 @@ export default async ({ request, response }) => {
     return;
   }
 
-  try {
-    const userId = await createUser({ name, role, jiraAdmin });
-    response.body = { msg: "User created", userId };
-  } catch (err) {
-    response.status = 500;
-    response.body = { msg: err.message };
-  }
+  const userId = await createUser({ name, role, jiraAdmin });
+
+  response.body = { msg: "User created", userId };
 };

@@ -19,11 +19,7 @@ export default async ({ params, request, response }) => {
     value: { name, role, jiraAdmin }
   } = await request.body();
 
-  try {
-    await updateUser(userId, { name, role, jiraAdmin });
-    response.body = { msg: "User updated" };
-  } catch (err) {
-    response.status = 500;
-    response.body = { msg: err.message };
-  }
+  await updateUser(userId, { name, role, jiraAdmin });
+
+  response.body = { msg: "User updated" };
 };

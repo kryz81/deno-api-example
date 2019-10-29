@@ -9,11 +9,6 @@ export default async ({ params, response }) => {
     return;
   }
 
-  try {
-    await deleteUser(userId);
-    response.body = { msg: "User deleted" };
-  } catch (err) {
-    response.status = 500;
-    response.body = { msg: err.message };
-  }
+  await deleteUser(userId);
+  response.body = { msg: "User deleted" };
 };
