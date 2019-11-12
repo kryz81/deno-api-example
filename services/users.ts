@@ -24,7 +24,7 @@ export const createUser = async (userData: UserData): Promise<string> => {
     id: createId(),
     name: String(userData.name),
     role: String(userData.role),
-    jiraAdmin: "jiraAdmin" in userData ? userData.jiraAdmin : false,
+    jiraAdmin: "jiraAdmin" in userData ? Boolean(userData.jiraAdmin) : false,
     added: new Date()
   };
 
@@ -43,12 +43,16 @@ export const updateUser = async (
     throw new Error("User not found");
   }
 
+  console.log(userData);
+
   const updatedUser = {
     ...user,
-    name: "name" in userData ? String(userData.name) : user.name,
-    role: "role" in userData ? String(userData.role) : user.role,
+    name: userData.name !== undefined ? String(userData.name) : user.name,
+    role: userData.role !== undefined ? String(userData.role) : user.role,
     jiraAdmin:
-      "jiraAdmin" in userData ? Boolean(userData.jiraAdmin) : user.jiraAdmin
+      userData.jiraAdmin !== undefined
+        ? Boolean(userData.jiraAdmin)
+        : user.jiraAdmin
   };
 
   const users = await fetchData();
