@@ -10,7 +10,7 @@ export const fetchData = async (): Promise<User[]> => {
   return JSON.parse(decodedData);
 };
 
-export const persistData = async (data): Promise<void> => {
+export const persistData = async (data: User[]): Promise<void> => {
   const encoder = new TextEncoder();
   await Deno.writeFile(DB_PATH, encoder.encode(JSON.stringify(data)));
 };

@@ -43,8 +43,6 @@ export const updateUser = async (
     throw new Error("User not found");
   }
 
-  console.log(userData);
-
   const updatedUser = {
     ...user,
     name: userData.name !== undefined ? String(userData.name) : user.name,

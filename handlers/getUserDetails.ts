@@ -1,6 +1,13 @@
+import { Response, RouteParams } from "https://deno.land/x/oak/mod.ts";
 import { getUser } from "../services/users.ts";
 
-export default async ({ params, response }) => {
+export default async ({
+  params,
+  response
+}: {
+  params: RouteParams;
+  response: Response;
+}) => {
   const userId = params.id;
 
   if (!userId) {
